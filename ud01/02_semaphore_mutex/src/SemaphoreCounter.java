@@ -1,6 +1,6 @@
 import java.util.concurrent.Semaphore;
 
-public class SemaphoreCounter {
+public class   SemaphoreCounter {
     private Semaphore semaphore = new Semaphore(2, true);
     private int counter;
 
