@@ -1,15 +1,19 @@
 import java.util.concurrent.Semaphore;
 
-public class   SemaphoreCounter {
-    private Semaphore semaphore = new Semaphore(2, true);
-    private int counter;
+public class SemaphoreCounter implements ICounter{
+    private int counter = 0;
+    private Semaphore semaphore = new Semaphore(2);
 
-    public void increment() throws InterruptedException {
-        semaphore.acquire();
+    public synchronized void increment() {
+        try {
+            semaphore.acquire(1);
 
-        counter++;
+            counter++;
 
-        semaphore.release();
+            semaphore.release();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int getCounter() {

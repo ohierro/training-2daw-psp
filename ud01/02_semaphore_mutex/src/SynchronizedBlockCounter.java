@@ -1,10 +1,9 @@
-public class MutexCounter implements ICounter{
+public class SynchronizedBlockCounter implements ICounter{
     private int counter = 0;
-    private Object mutex = new Object();
 
     public void increment() {
         // consulta a BD
-        synchronized(mutex) {
+        synchronized(this) {
             counter++;
         }
         // Fetch

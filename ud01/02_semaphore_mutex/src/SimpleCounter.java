@@ -1,12 +1,11 @@
-public class SimpleCounter implements ICounter {
+public class SimpleCounter implements ICounter{
+    private int counter = 0;
 
-    @Override
-    public void increment() throws InterruptedException {
-
+    public void  increment() {
+        counter++;
     }
 
-    @Override
     public int getCounter() {
-        return 0;
+        return counter;
     }
 }

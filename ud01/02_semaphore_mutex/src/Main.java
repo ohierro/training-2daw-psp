@@ -1,26 +1,22 @@
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        CounterThread[] threads = new CounterThread[3];
+        // ICounter counter = new SimpleCounter();
+        // ICounter counter = new SynchronizedCounter();
+        // ICounter counter = new SynchronizedBlockCounter();
+        // ICounter counter =  new ReentranLockCounter();
+        // ICounter counter = new SemaphoreCounter();
+        ICounter counter = new AtomicIntegerCounter();
 
-        //Counter counter = new Counter();
-        //ReentrantCounter counter = new ReentrantCounter();
-        //SemaphoreCounter counter = new SemaphoreCounter();
-        ICounter counter = new MutexCounter();
+        for(int i = 0; i < threads.length; i++){
+            threads[i] = new CounterThread(counter);
+            threads[i].start();
+        }
 
-        var ct1 = new CounterThread(counter);
-        var ct2 = new CounterThread(counter);
-        var ct3 = new CounterThread(counter);
+        for(int i = 0; i < threads.length; i++){
+            threads[i].join();
+        }
 
-        System.out.println("Valor del contador: " + counter.getCounter());
-
-        ct1.start();
-        ct2.start();
-        ct3.start();
-
-        ct1.join();
-        ct2.join();
-        ct3.join();
-
-        System.out.println("Valor del contador: " + counter.getCounter());
-        System.out.println("End of program!!");
+        System.out.println("Counter: " + counter.getCounter());
     }
 }
