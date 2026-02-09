@@ -50,6 +50,8 @@ El Event Loop es el corazón de Node.js. Es un mecanismo que permite procesar m�
 4. **Cuando termina**, la operación retorna al Event Loop como callback
 5. **El callback se ejecuta** cuando el Event Loop vuelve a esa tarea
 
+---
+
 **Ejemplo práctico:**
 
 ```javascript
@@ -78,6 +80,8 @@ Node.js logra **concurrencia sin hilos explícitos** mediante:
 - **Operaciones no bloqueantes:** Las operaciones I/O no esperan a completarse
 - **Callbacks y Promesas:** Se ejecutan cuando los datos están listos
 - **Async/Await:** Sintaxis moderna para manejar operaciones asincrónicas
+
+---
 
 **Ejemplo con múltiples operaciones concurrentes:**
 
@@ -111,6 +115,8 @@ En lugar de esperar a que termine una operación I/O (lectura de archivo, red, b
 - Proporciona un **callback** que se ejecuta cuando termina
 - **Continúa procesando** otras tareas mientras espera
 
+---
+
 **Comparación:**
 
 | Enfoque | Comportamiento | Ejemplo |
@@ -124,19 +130,114 @@ Esto permite que un **único proceso Node.js maneje miles de conexiones simultá
 
 # Gestión de paquetes con NPM
 
-Uso de `npm init`, instalación de dependencias (`dependencies` vs `devDependencies`) y el archivo `package.json`.
+Como gestionamos las dependencias y el ciclo de vida de paquetes en proyectos Node.js.
+---
 
-- Inicializar un proyecto con `npm init`
-- Estructura del `package.json`
-- Tipos de dependencias: `dependencies` vs `devDependencies`
-- Instalación y gestión de paquetes
-- Versionamiento semántico
+## Inicializar un proyecto con `npm init`
+
+Crear un `package.json` es el primer paso para gestionar dependencias y scripts del proyecto.
+
+Comandos básicos:
+
+```bash
+npm init          # iniciar asistente interactivo
+npm init -y       # crear package.json con valores por defecto
+```
+
+---
+
+Campos importantes generados:
+- `name`, `version`, `description`
+- `main` (entrada de la librería)
+- `scripts` (tareas reutilizables, p. ej. `start`, `test`)
+- `dependencies` y `devDependencies`
+
+---
+
+## Estructura del `package.json`
+
+Ejemplo mínimo:
+
+```json
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
+```
+
+---
+
+- `scripts`: atajos para ejecutar comandos; en CI se usan mucho (`npm test`, `npm run build`).
+- `dependencies`: librerías necesarias en producción.
+- `devDependencies`: herramientas para desarrollo/testing/build.
+
+---
+
+## Tipos de dependencias
+
+- `dependencies`: requeridas en tiempo de ejecución (p. ej. `express`, `typeorm`).
+- `devDependencies`: para desarrollo (p. ej. `jest`, `eslint`, `webpack`).
+- `peerDependencies`: usarlas cuando creas librerías que dependen de una versión que debe resolver el consumidor.
+- `optionalDependencies`: dependencias no críticas que pueden fallar al instalarse sin bloquear la instalación.
+
+Ejemplos:
+
+```bash
+npm install express            # añade a dependencies
+npm install --save-dev jest    # añade a devDependencies
+npm uninstall lodash           # elimina paquete
+```
+
+---
+
+## Instalación y gestión de paquetes
+
+- `npm install` instala las dependencias listadas en `package.json`.
+- `package-lock.json` asegura instalaciones determinísticas.
+- `node_modules/` contiene las dependencias locales.
+- `npx` ejecuta binarios de paquetes sin instalarlos globalmente (`npx create-react-app my-app`).
+- `npm ci` para instalaciones limpias en CI (usa `package-lock.json` y es más rápida/fiable).
+
+---
+
+## Versionamiento semántico (SemVer)
+
+Formato: `MAJOR.MINOR.PATCH`.
+
+- Incrementa `MAJOR` para cambios incompatibles (breaking changes).
+- Incrementa `MINOR` para nuevas funcionalidades compatibles.
+- Incrementa `PATCH` para correcciones de errores compatibles.
+
+Gestión de versiones en `package.json`:
+- `^1.2.3` actualiza versiones compatibles semánticamente (minor/patch)
+- `~1.2.3` permite solo parches
+- `1.2.3` versión fija
+
+---
+
+Ejemplo:
+
+- `"dep": "~1.4.2"`, npm permitirá instalar cualquier versión `1.4.x` >= `1.4.2` (por ejemplo `1.4.3`), pero no actualizará a `1.5.0`.
+- En cambio, `"dep": "^1.4.2"` permitirá actualizaciones hasta `1.x.x` (por ejemplo `1.5.0`) siempre que no cambie el Major.
 
 ---
 
 # Módulos en Node.js
 
-Diferencia entre CommonJS (`require`) y ES Modules (`import/export`).
+---
+
+En JavaScript existen dos sistemas principales para organizar y cargar código en módulos: **CommonJS** y **ES Modules**. CommonJS es el sistema tradicional en Node.js, mientras que ES Modules es el estándar moderno, compatible con navegadores
 
 ---
 
@@ -178,6 +279,8 @@ ES Modules es el estándar moderno de JavaScript que Node.js también soporta (c
 - Importación selectiva más clara
 - Soporte nativo en navegadores
 
+---
+
 **Ejemplo:**
 ```javascript
 // math.js
@@ -201,16 +304,22 @@ console.log(suma(5, 3)); // 8
 | **Rendimiento** | Más lento en aplicaciones grandes | Más rápido, optimizable |
 | **Compatibilidad** | Total (todas las versiones) | Requiere configuración en Node.js < 12 |
 | **Tree-shaking** | No soporta | Soportado nativamente |
+
+---
+
+| Aspecto | CommonJS | ES Modules |
+|--------|----------|-----------|
 | **Caché de módulos** | Automática | Automática |
 | **Curva de aprendizaje** | Más simple | Más moderna y estándar |
 | **Interoperabilidad** | Limitada con ES Modules | Compatible con CommonJS (con limitaciones) |
 | **Uso en entorno** | Backend (Node.js) | Frontend y Backend |
 
+---
+
 #### Cómo elegir entre ambos
 
 - **Usa CommonJS** si trabajas con librerías legadas o necesitas máxima compatibilidad
 - **Usa ES Modules** para proyectos nuevos y si quieres seguir el estándar moderno de JavaScript
-- **Ventajas y desventajas de cada enfoque**
 
 ---
 
