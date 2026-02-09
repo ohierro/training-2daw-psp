@@ -282,6 +282,8 @@ cat > "$PUBLIC_DIR/index.html" << 'HTML_EOF'
     <div class="container">
         <h1>📚 Presentaciones 2DAW - PSP</h1>
         <p class="subtitle">Ciclo Formativo de Grado Superior</p>
+        <p class="subtitle">Profesor: Óliver Hierro Amón</p>
+        <p class="subtitle">Repositorio del curso 💻: <a href="https://github.com/ohierro/training-2daw-psp">https://github.com/ohierro/training-2daw-psp</a></p>
         
         <div id="content"></div>
         
