@@ -32,6 +32,12 @@ jobs:
       - name: Install Marp CLI
         run: npm install -g @marp-team/marp-cli
 
+      - name: Verify Marp installation
+        run: marp --version
+
+      - name: List presentation files
+        run: find presentations/ -name "*.md" | sort
+
       - name: Create output directory
         run: mkdir -p public
 
@@ -40,10 +46,21 @@ jobs:
           chmod +x ./scripts/build-marp.sh
           ./scripts/build-marp.sh
 
+      - name: Debug - List generated files
+        run: |
+          echo "📁 Contenido de public/"
+          ls -la public/
+          echo ""
+          echo "📁 Estructura completa:"
+          find public/ -type f | head -20
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'public'
+        
+      - name: Check artifact upload
+        run: echo "✅ Artifact subido a GitHub Pages"
 
   deploy:
     environment:

@@ -7,11 +7,20 @@ set -e
 PUBLIC_DIR="public"
 PRESENTATIONS_DIR="presentations"
 
+# Verificar que marp está disponible
+if ! command -v marp &> /dev/null; then
+    echo "❌ Error: marp no está instalado"
+    exit 1
+fi
+
+echo "ℹ️  Versión de marp: $(marp --version)"
+
 # Limpiar directorio público
 rm -rf "$PUBLIC_DIR"
 mkdir -p "$PUBLIC_DIR"
 
 echo "🚀 Iniciando exportación de presentaciones Marp..."
+echo "📁 Directorio de presentaciones: $PRESENTATIONS_DIR"  
 
 # Función para exportar un archivo Marp
 export_marp_file() {
@@ -20,7 +29,14 @@ export_marp_file() {
     
     if [ -f "$input_file" ]; then
         echo "📄 Exportando: $input_file -> $output_file"
-        marp "$input_file" --html --output "$output_file"
+        if marp "$input_file" --html --output "$output_file"; then
+            echo "   ✅ Exportado exitosamente"
+        else
+            echo "   ❌ Error exportando $input_file"
+            return 1
+        fi
+    else
+        echo "⚠️  Archivo no encontrado: $input_file"
     fi
 }
 
@@ -326,6 +342,17 @@ cat > "$PUBLIC_DIR/index.html" << 'EOF'
 </html>
 EOF
 
-echo "✅ Exportación completada exitosamente"
-echo "📁 Archivos generados en: $PUBLIC_DIR"
-ls -la "$PUBLIC_DIR"
+echo ""
+echo "✅ Exportación completada"
+echo ""
+echo "📊 Resumen de archivos generados:"
+echo "   - Total de archivos: $(find "$PUBLIC_DIR" -type f | wc -l)"
+echo "   - Archivos HTML: $(find "$PUBLIC_DIR" -name "*.html" | wc -l)"
+echo ""
+echo "📁 Estructura de directorios:"
+find "$PUBLIC_DIR" -type d | sed 's|[^/]*/|  |g'
+echo ""
+echo "📄 Archivos generados:"
+find "$PUBLIC_DIR" -type f | sort
+echo ""
+echo "✨ El contenido está listo para GitHub Pages"
