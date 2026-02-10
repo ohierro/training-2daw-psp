@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'presentations/**'
+      - 'scripts/build-marp.sh'
       - '.github/workflows/marp-export.yml'
   workflow_dispatch:
 
