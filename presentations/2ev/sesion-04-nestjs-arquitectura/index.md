@@ -1,3 +1,9 @@
+---
+marp: true
+footer: '2DAM - PSP'
+paginate: true
+---
+
 # Sesión 4: Hola, NestJS: Arquitectura
 
 ## Objetivos de Aprendizaje

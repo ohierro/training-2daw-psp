@@ -1,6 +1,6 @@
 ---
 marp: true
-footer: 'Página %page% de %pages%'
+footer: '2DAM - PSP'
 paginate: true
 ---
 
