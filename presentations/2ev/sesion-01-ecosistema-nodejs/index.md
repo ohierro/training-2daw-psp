@@ -1,5 +1,7 @@
 ---
 marp: true
+footer: 'Página %page% de %pages%'
+paginate: true
 ---
 
 # Sesión 1: El Ecosistema Node.js

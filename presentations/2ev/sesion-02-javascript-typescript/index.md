@@ -1,5 +1,7 @@
 ---
 marp: true
+footer: 'Página %page% de %pages%'
+paginate: true
 ---
 
 # Sesión 2: JavaScript Moderno y TypeScript

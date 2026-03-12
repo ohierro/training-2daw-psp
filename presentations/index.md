@@ -1,5 +1,7 @@
 ---
 marp: true
+footer: 'Página %page% de %pages%'
+paginate: true
 ---
 
 # 📚 Programas Educativos 2DAW
