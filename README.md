@@ -7,7 +7,10 @@ You can see it live on: [https://ohierro.github.io/training-2daw-psp/](https://o
 
 ## Organization
 
+```bash
 | - code: Code examples
 | --- ev1
 | --- ev2
 | - presentations: Code for presentations (markdown)
+| - scripts: Scripts for webpage generation on CICD pipelines
+```

@@ -1,3 +1,4 @@
 out/
 .idea/
 public/
+node_modules/
