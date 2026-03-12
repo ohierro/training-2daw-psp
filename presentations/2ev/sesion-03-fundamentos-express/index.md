@@ -266,7 +266,15 @@ app.get('/usuarios/:id', (req, res) => {
 });
 
 // URL: /usuarios/42 → req.params.id = '42'
+```
 
+---
+
+## Parámetros de ruta (`:id`) - Parte 2
+
+Múltiples parámetros y ejemplos:
+
+```javascript
 // Múltiples parámetros
 app.get('/usuarios/:id/posts/:postId', (req, res) => {
   const { id, postId } = req.params;
@@ -291,12 +299,19 @@ app.get('/articulos/:id(\\d+)', (req, res) => {
 // URL: /articulos/123 ✅
 // URL: /articulos/abc ❌
 
+## Parámetros de ruta (`:id`) - Parte 3
+
+Parámetro opcional:
+
+```javascript
 // Parámetro opcional
 app.get('/search/:query?', (req, res) => {
   const query = req.params.query || 'sin búsqueda';
   res.json({ resultado: query });
 });
 ```
+
+---
 
 ---
 
