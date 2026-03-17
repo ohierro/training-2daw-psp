@@ -50,13 +50,7 @@ Este curso está organizado en 8 sesiones que cubren desde los fundamentos de No
 
 ---
 
-7. **[Sesión 7: Validación de Datos (DTOs) y Pipes](./sesion-07-validacion-datos/index.md)**
-   - Data Transfer Objects (DTO)
-   - Validación automática
-   - ValidationPipe
-   - Transformación de datos
-
-8. **[Sesión 8: Persistencia de Datos Inicial (TypeORM)](./sesion-08-persistencia-datos/index.md)**
+7. **[Sesión 7: Persistencia de Datos Inicial (TypeORM)](./sesion-07-persistencia-datos/index.md)**
    - Configuración de TypeORM
    - Entidades
    - Repositorios

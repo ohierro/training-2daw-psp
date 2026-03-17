@@ -1,0 +1,19 @@
+{
+  "name": "sesion-03-express",
+  "version": "1.0.0",
+  "description": "Ejemplos de Express.js extraídos de las slides de la sesión 03.",
+  "main": "01-servidor-basico.js",
+  "scripts": {
+    "dev:01": "nodemon 01-servidor-basico.js",
+    "dev:02": "nodemon 02-rutas.js",
+    "dev:03": "nodemon 03-router.js",
+    "dev:04": "nodemon 04-middlewares.js",
+    "dev:05": "nodemon 05-metodos-http.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
