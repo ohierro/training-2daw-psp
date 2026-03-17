@@ -14,7 +14,7 @@ class Usuario {
 // Forma abreviada
 class UsuarioAbreviado {
   constructor(
-    public id: number,
+    protected id: number,
     public nombre: string,
     public email: string
   ) {}

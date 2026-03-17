@@ -13,11 +13,11 @@ function AgregarTimestamp(constructor: Function) {
   constructor.prototype.creado = new Date();
 }
 
-@AgregarTimestamp
-class Usuario {
-  nombre: string;
-  creado?: Date;
-}
+// @AgregarTimestamp
+// class Usuario {
+//   nombre: string;
+//   creado?: Date;
+// }
 
-const usuario = new Usuario();
-console.log(usuario.creado); // Fecha actual
+// const usuario = new Usuario();
+// console.log(usuario.creado); // Fecha actual
