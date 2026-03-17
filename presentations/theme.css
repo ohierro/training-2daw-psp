@@ -1,0 +1,6 @@
+/* @theme psp */
+@import 'default';
+
+pre {
+  font-size: 0.75em;
+}

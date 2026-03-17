@@ -1,5 +1,6 @@
 ---
 marp: true
+theme: psp
 footer: '2DAM - PSP'
 paginate: true
 ---
