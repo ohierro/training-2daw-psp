@@ -2,7 +2,7 @@
 
 ## Contenido del Curso
 
-Este curso está organizado en 8 sesiones que cubren desde los fundamentos de Node.js hasta la persistencia de datos con TypeORM.
+Este curso está organizado en 7 sesiones que cubren desde los fundamentos de Node.js hasta la persistencia de datos con TypeORM.
 
 ---
 
